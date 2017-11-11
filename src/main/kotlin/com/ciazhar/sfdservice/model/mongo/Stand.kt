@@ -2,8 +2,6 @@ package com.ciazhar.sfdservice.model.mongo
 
 import org.springframework.data.annotation.Id
 import org.springframework.data.mongodb.core.mapping.Document
-import javax.validation.constraints.Max
-import javax.validation.constraints.Min
 import javax.validation.constraints.NotEmpty
 
 /**
