@@ -9,8 +9,7 @@ import reactor.core.publisher.Mono
  *
  * [ Documentation Here ]
  */
-interface UserService{
-    fun registerWorkshop(festivalUser: FestivalUser) : Mono<FestivalUser>
+interface FestivalUserService {
     fun registerFestival(festivalUser: FestivalUser) : Mono<FestivalUser>
     fun submitScore(form : SubmitScoreForm) : Mono<FestivalUser>
 }

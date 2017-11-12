@@ -9,4 +9,4 @@ import org.springframework.data.mongodb.repository.ReactiveMongoRepository
  * [ Documentation Here ]
  */
 
-interface UserRepository : ReactiveMongoRepository<FestivalUser, String>
+interface FestivalUserRepository : ReactiveMongoRepository<FestivalUser, String>

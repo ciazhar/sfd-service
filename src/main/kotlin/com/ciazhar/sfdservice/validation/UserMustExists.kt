@@ -1,6 +1,6 @@
 package com.ciazhar.sfdservice.validation
 
-import com.ciazhar.sfdservice.repository.UserRepository
+import com.ciazhar.sfdservice.repository.FestivalUserRepository
 import javax.validation.Constraint
 import javax.validation.ConstraintValidator
 import javax.validation.ConstraintValidatorContext
@@ -26,7 +26,7 @@ annotation class UserMustExists(
 )
 
 @Suppress("NULLABILITY_MISMATCH_BASED_ON_JAVA_ANNOTATIONS")
-class UserMustExistsValidator (private val repository: UserRepository)
+class UserMustExistsValidator (private val repository: FestivalUserRepository)
     : ConstraintValidator<UserMustExists, String> {
 
     override fun isValid(value: String?, context: ConstraintValidatorContext?): Boolean {

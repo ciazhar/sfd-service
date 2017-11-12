@@ -4,26 +4,18 @@ import com.ciazhar.sfdservice.exception.UserHasVisitException
 import com.ciazhar.sfdservice.model.Score
 import com.ciazhar.sfdservice.model.mongo.FestivalUser
 import com.ciazhar.sfdservice.model.request.SubmitScoreForm
-import com.ciazhar.sfdservice.service.UserService
-import com.ciazhar.sfdservice.repository.UserRepository
+import com.ciazhar.sfdservice.service.FestivalUserService
+import com.ciazhar.sfdservice.repository.FestivalUserRepository
 import org.springframework.stereotype.Service
 import reactor.core.publisher.Mono
 
 @Suppress("NULLABILITY_MISMATCH_BASED_ON_JAVA_ANNOTATIONS")
 @Service
-class UserServiceImpl (private val userRepository: UserRepository) : UserService {
-
-    override fun registerWorkshop(festivalUser: FestivalUser) : Mono<FestivalUser>{
-        val score = Score(standId = "workshop",score = 100)
-        festivalUser.scoreList?.add(score)
-        festivalUser.score = 100
-        return userRepository.save(festivalUser)
-    }
+class FestivalUserServiceImpl(private val userRepository: FestivalUserRepository) : FestivalUserService {
 
     override fun registerFestival(festivalUser: FestivalUser) : Mono<FestivalUser>{
         return userRepository.save(festivalUser)
     }
-
 
     override fun submitScore(form : SubmitScoreForm) : Mono<FestivalUser> {
         return Mono.just(
