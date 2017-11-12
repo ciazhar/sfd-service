@@ -1,6 +1,7 @@
 package com.ciazhar.sfdservice.controller
 
 import com.ciazhar.sfdservice.model.mongo.FestivalParticipant
+import com.ciazhar.sfdservice.model.request.DecreasePointForm
 import com.ciazhar.sfdservice.model.request.DeleteFestivalParticipantForm
 import com.ciazhar.sfdservice.model.request.SubmitScoreForm
 import com.ciazhar.sfdservice.service.FestivalParticipantService
@@ -36,5 +37,10 @@ class FestivalParticipantController(private val service: FestivalParticipantServ
     @PostMapping("/delete")
     fun delete(@Valid @RequestBody form : DeleteFestivalParticipantForm) : Mono<Void>{
         return service.delete(form)
+    }
+
+    @PostMapping("/decrease")
+    fun decreasePoint(@Valid @RequestBody form : DecreasePointForm) : Mono<FestivalParticipant>{
+        return service.decreasePoint(form)
     }
 }
