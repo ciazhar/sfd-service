@@ -3,6 +3,7 @@ package com.ciazhar.sfdservice.service.impl
 import com.ciazhar.sfdservice.exception.UserHasVisitException
 import com.ciazhar.sfdservice.model.Score
 import com.ciazhar.sfdservice.model.mongo.FestivalUser
+import com.ciazhar.sfdservice.model.request.DeleteFestivalParticipantForm
 import com.ciazhar.sfdservice.model.request.SubmitScoreForm
 import com.ciazhar.sfdservice.service.FestivalUserService
 import com.ciazhar.sfdservice.repository.FestivalUserRepository
@@ -13,6 +14,10 @@ import reactor.core.publisher.Mono
 @Suppress("NULLABILITY_MISMATCH_BASED_ON_JAVA_ANNOTATIONS")
 @Service
 class FestivalUserServiceImpl(private val userRepository: FestivalUserRepository) : FestivalUserService {
+
+    override fun delete(form : DeleteFestivalParticipantForm) : Mono<Void> {
+        return userRepository.findById(form.participantId).flatMap { user -> userRepository.delete(user) }
+    }
 
     override fun registerFestival(festivalUser: FestivalUser) : Mono<FestivalUser>{
         return userRepository.save(festivalUser)
