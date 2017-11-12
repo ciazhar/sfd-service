@@ -1,6 +1,7 @@
 package com.ciazhar.sfdservice.controller
 
 import com.ciazhar.sfdservice.model.mongo.User
+import com.ciazhar.sfdservice.model.request.SubmitScoreForm
 import com.ciazhar.sfdservice.service.UserService
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestBody
@@ -22,5 +23,10 @@ class FestivalController(private val service: UserService){
     @PostMapping("/register")
     fun register(@Valid @RequestBody user: User) : Mono<User> {
         return service.registerFestival(user)
+    }
+
+    @PostMapping("/submit")
+    fun submitScore(@Valid @RequestBody form : SubmitScoreForm) : Mono<User>{
+        return service.submitScore(form)
     }
 }
