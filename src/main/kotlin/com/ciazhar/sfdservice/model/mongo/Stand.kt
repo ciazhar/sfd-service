@@ -18,9 +18,5 @@ data class Stand(
 
     @field:NotEmpty
     @field:Indexed(unique = true)
-    var standName : String?=null,
-
-    var lowestScore : Int?=null,
-    var normalScore : Int?=null,
-    var highestScore : Int?=null
+    var standName : String?=null
 )
