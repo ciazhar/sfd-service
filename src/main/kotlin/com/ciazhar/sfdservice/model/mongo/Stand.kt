@@ -1,6 +1,7 @@
 package com.ciazhar.sfdservice.model.mongo
 
 import org.springframework.data.annotation.Id
+import org.springframework.data.mongodb.core.index.Indexed
 import org.springframework.data.mongodb.core.mapping.Document
 import javax.validation.constraints.NotEmpty
 
@@ -16,6 +17,7 @@ data class Stand(
     var id : String?=null,
 
     @field:NotEmpty
+    @field:Indexed(unique = true)
     var standName : String?=null,
 
     var lowestScore : Int?=null,
