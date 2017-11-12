@@ -6,6 +6,6 @@ package com.ciazhar.sfdservice.model
  * [ Documentation Here ]
  */
 data class Score(
-    var scoreName : String?=null,
+    var standId : String?=null,
     var score : Int?=null
 )
