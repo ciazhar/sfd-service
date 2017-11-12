@@ -1,6 +1,7 @@
 package com.ciazhar.sfdservice.controller
 
 import com.ciazhar.sfdservice.model.mongo.WorkshopParticipant
+import com.ciazhar.sfdservice.model.request.DeleteWorkshopParticipantForm
 import com.ciazhar.sfdservice.service.WorkshopParticipantService
 import org.springframework.web.bind.annotation.*
 import reactor.core.publisher.Flux
@@ -25,5 +26,10 @@ class WorkshopParticipantController(private val service: WorkshopParticipantServ
     @GetMapping("/all")
     fun findAll() : Flux<WorkshopParticipant>{
         return service.findAll()
+    }
+
+    @PostMapping("/delete")
+    fun delete(@Valid @RequestBody form : DeleteWorkshopParticipantForm) : Mono<Void>{
+        return service.delete(form)
     }
 }
