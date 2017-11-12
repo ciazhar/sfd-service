@@ -3,10 +3,8 @@ package com.ciazhar.sfdservice.controller
 import com.ciazhar.sfdservice.model.mongo.FestivalUser
 import com.ciazhar.sfdservice.model.request.SubmitScoreForm
 import com.ciazhar.sfdservice.service.FestivalUserService
-import org.springframework.web.bind.annotation.PostMapping
-import org.springframework.web.bind.annotation.RequestBody
-import org.springframework.web.bind.annotation.RequestMapping
-import org.springframework.web.bind.annotation.RestController
+import org.springframework.web.bind.annotation.*
+import reactor.core.publisher.Flux
 import reactor.core.publisher.Mono
 import javax.validation.Valid
 
@@ -28,5 +26,9 @@ class FestivalController(private val service: FestivalUserService){
     @PostMapping("/submit")
     fun submitScore(@Valid @RequestBody form : SubmitScoreForm) : Mono<FestivalUser>{
         return service.submitScore(form)
+    }
+    @GetMapping("/all")
+    fun findAll() : Flux<FestivalUser>{
+        return service.findAll()
     }
 }
