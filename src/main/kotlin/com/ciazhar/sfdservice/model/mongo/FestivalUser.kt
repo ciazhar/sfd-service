@@ -16,7 +16,7 @@ import kotlin.collections.ArrayList
  */
 
 @Document
-data class User(
+data class FestivalUser(
     @Id
     var id : String?=null,
 

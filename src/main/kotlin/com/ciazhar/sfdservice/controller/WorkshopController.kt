@@ -1,6 +1,6 @@
 package com.ciazhar.sfdservice.controller
 
-import com.ciazhar.sfdservice.model.mongo.User
+import com.ciazhar.sfdservice.model.mongo.FestivalUser
 import com.ciazhar.sfdservice.service.UserService
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestBody
@@ -20,7 +20,7 @@ import javax.validation.Valid
 class WorkshopController(private val service: UserService){
 
     @PostMapping("/register")
-    fun register(@Valid @RequestBody user: User) : Mono<User>{
-        return service.registerWorkshop(user)
+    fun register(@Valid @RequestBody festivalUser: FestivalUser) : Mono<FestivalUser>{
+        return service.registerWorkshop(festivalUser)
     }
 }

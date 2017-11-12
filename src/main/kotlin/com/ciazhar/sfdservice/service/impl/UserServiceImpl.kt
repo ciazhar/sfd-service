@@ -2,7 +2,7 @@ package com.ciazhar.sfdservice.service.impl
 
 import com.ciazhar.sfdservice.exception.UserHasVisitException
 import com.ciazhar.sfdservice.model.Score
-import com.ciazhar.sfdservice.model.mongo.User
+import com.ciazhar.sfdservice.model.mongo.FestivalUser
 import com.ciazhar.sfdservice.model.request.SubmitScoreForm
 import com.ciazhar.sfdservice.service.UserService
 import com.ciazhar.sfdservice.repository.UserRepository
@@ -13,19 +13,19 @@ import reactor.core.publisher.Mono
 @Service
 class UserServiceImpl (private val userRepository: UserRepository) : UserService {
 
-    override fun registerWorkshop(user : User) : Mono<User>{
+    override fun registerWorkshop(festivalUser: FestivalUser) : Mono<FestivalUser>{
         val score = Score(standId = "workshop",score = 100)
-        user.scoreList?.add(score)
-        user.score = 100
-        return userRepository.save(user)
+        festivalUser.scoreList?.add(score)
+        festivalUser.score = 100
+        return userRepository.save(festivalUser)
     }
 
-    override fun registerFestival(user : User) : Mono<User>{
-        return userRepository.save(user)
+    override fun registerFestival(festivalUser: FestivalUser) : Mono<FestivalUser>{
+        return userRepository.save(festivalUser)
     }
 
 
-    override fun submitScore(form : SubmitScoreForm) : Mono<User> {
+    override fun submitScore(form : SubmitScoreForm) : Mono<FestivalUser> {
         return Mono.just(
             submitOrNot(userRepository.findById(form.userId).block(),form)
         )
@@ -34,25 +34,25 @@ class UserServiceImpl (private val userRepository: UserRepository) : UserService
         }
     }
 
-    fun submitOrNot(user : User, form : SubmitScoreForm) : User {
-        if(isStandHasVisited(user,form)==false){
-            addPoint(user,form)
-            return user
+    fun submitOrNot(festivalUser: FestivalUser, form : SubmitScoreForm) : FestivalUser {
+        if(isStandHasVisited(festivalUser,form)==false){
+            addPoint(festivalUser,form)
+            return festivalUser
         }
         else{
             throw UserHasVisitException()
         }
     }
 
-    fun isStandHasVisited(user : User, form : SubmitScoreForm) : Boolean? {
-        return user.scoreList?.stream()?.anyMatch {
+    fun isStandHasVisited(festivalUser: FestivalUser, form : SubmitScoreForm) : Boolean? {
+        return festivalUser.scoreList?.stream()?.anyMatch {
             score -> score.standId.equals(form.standId)
         }
     }
 
-    fun addPoint(user : User, form : SubmitScoreForm?){
+    fun addPoint(festivalUser: FestivalUser, form : SubmitScoreForm?){
         val score = Score(standId = form?.standId, score = form?.score)
-        user.scoreList?.add(score)
-        user.score = user.score!! + form?.score!!
+        festivalUser.scoreList?.add(score)
+        festivalUser.score = festivalUser.score!! + form?.score!!
     }
 }

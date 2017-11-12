@@ -1,6 +1,6 @@
 package com.ciazhar.sfdservice.service
 
-import com.ciazhar.sfdservice.model.mongo.User
+import com.ciazhar.sfdservice.model.mongo.FestivalUser
 import com.ciazhar.sfdservice.model.request.SubmitScoreForm
 import reactor.core.publisher.Mono
 
@@ -10,7 +10,7 @@ import reactor.core.publisher.Mono
  * [ Documentation Here ]
  */
 interface UserService{
-    fun registerWorkshop(user : User) : Mono<User>
-    fun registerFestival(user : User) : Mono<User>
-    fun submitScore(form : SubmitScoreForm) : Mono<User>
+    fun registerWorkshop(festivalUser: FestivalUser) : Mono<FestivalUser>
+    fun registerFestival(festivalUser: FestivalUser) : Mono<FestivalUser>
+    fun submitScore(form : SubmitScoreForm) : Mono<FestivalUser>
 }
