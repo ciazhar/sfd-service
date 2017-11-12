@@ -2,6 +2,7 @@ package com.ciazhar.sfdservice.service
 
 import com.ciazhar.sfdservice.model.mongo.FestivalUser
 import com.ciazhar.sfdservice.model.request.SubmitScoreForm
+import reactor.core.publisher.Flux
 import reactor.core.publisher.Mono
 
 /**
@@ -12,4 +13,5 @@ import reactor.core.publisher.Mono
 interface FestivalUserService {
     fun registerFestival(festivalUser: FestivalUser) : Mono<FestivalUser>
     fun submitScore(form : SubmitScoreForm) : Mono<FestivalUser>
+    fun findAll() : Flux<FestivalUser>
 }
