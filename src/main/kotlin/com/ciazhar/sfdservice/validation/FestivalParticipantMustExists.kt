@@ -1,6 +1,6 @@
 package com.ciazhar.sfdservice.validation
 
-import com.ciazhar.sfdservice.repository.FestivalUserRepository
+import com.ciazhar.sfdservice.repository.FestivalParticipantRepository
 import javax.validation.Constraint
 import javax.validation.ConstraintValidator
 import javax.validation.ConstraintValidatorContext
@@ -16,18 +16,18 @@ import kotlin.reflect.KClass
  */
 @Target(CLASS, FILE, ANNOTATION_CLASS, FUNCTION, PROPERTY_GETTER, PROPERTY_SETTER, FIELD)
 @Retention(RUNTIME)
-@Constraint(validatedBy = arrayOf(UserMustExistsValidator::class))
+@Constraint(validatedBy = arrayOf(FestivalParticipantMustExistsValidator::class))
 @MustBeDocumented
-annotation class UserMustExists(
-    val message: String = "UserMustExists",
+annotation class FestivalParticipantMustExists(
+    val message: String = "FestivalParticipantMustExists",
     val groups: Array<KClass<*>> = arrayOf(),
     val payload: Array<KClass<out Payload>> = arrayOf(),
     val path: Array<String> = arrayOf()
 )
 
 @Suppress("NULLABILITY_MISMATCH_BASED_ON_JAVA_ANNOTATIONS")
-class UserMustExistsValidator (private val repository: FestivalUserRepository)
-    : ConstraintValidator<UserMustExists, String> {
+class FestivalParticipantMustExistsValidator (private val repository: FestivalParticipantRepository)
+    : ConstraintValidator<FestivalParticipantMustExists, String> {
 
     override fun isValid(value: String?, context: ConstraintValidatorContext?): Boolean {
         return repository.existsById(value).block()

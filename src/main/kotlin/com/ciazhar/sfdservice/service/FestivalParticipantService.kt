@@ -1,6 +1,6 @@
 package com.ciazhar.sfdservice.service
 
-import com.ciazhar.sfdservice.model.mongo.FestivalUser
+import com.ciazhar.sfdservice.model.mongo.FestivalParticipant
 import com.ciazhar.sfdservice.model.request.DeleteFestivalParticipantForm
 import com.ciazhar.sfdservice.model.request.SubmitScoreForm
 import reactor.core.publisher.Flux
@@ -11,9 +11,9 @@ import reactor.core.publisher.Mono
  *
  * [ Documentation Here ]
  */
-interface FestivalUserService {
-    fun registerFestival(festivalUser: FestivalUser) : Mono<FestivalUser>
-    fun submitScore(form : SubmitScoreForm) : Mono<FestivalUser>
-    fun findAll() : Flux<FestivalUser>
+interface FestivalParticipantService {
+    fun registerFestival(festivalUser: FestivalParticipant) : Mono<FestivalParticipant>
+    fun submitScore(form : SubmitScoreForm) : Mono<FestivalParticipant>
+    fun findAll() : Flux<FestivalParticipant>
     fun delete(form : DeleteFestivalParticipantForm) : Mono<Void>
 }

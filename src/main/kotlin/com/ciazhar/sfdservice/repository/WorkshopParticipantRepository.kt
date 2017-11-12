@@ -1,6 +1,6 @@
 package com.ciazhar.sfdservice.repository
 
-import com.ciazhar.sfdservice.model.mongo.WorkshopUser
+import com.ciazhar.sfdservice.model.mongo.WorkshopParticipant
 import org.springframework.data.mongodb.repository.ReactiveMongoRepository
 
 /**
@@ -8,4 +8,4 @@ import org.springframework.data.mongodb.repository.ReactiveMongoRepository
  *
  * [ Documentation Here ]
  */
-interface WorkshopUserRepository : ReactiveMongoRepository<WorkshopUser,String>
+interface WorkshopParticipantRepository : ReactiveMongoRepository<WorkshopParticipant,String>

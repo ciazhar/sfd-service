@@ -1,7 +1,7 @@
 package com.ciazhar.sfdservice.model.request
 
 import com.ciazhar.sfdservice.validation.StandMustExists
-import com.ciazhar.sfdservice.validation.UserMustExists
+import com.ciazhar.sfdservice.validation.FestivalParticipantMustExists
 
 /**
  * Created by ciazhar on 11/12/17.
@@ -10,7 +10,7 @@ import com.ciazhar.sfdservice.validation.UserMustExists
  */
 
 data class SubmitScoreForm(
-    @UserMustExists
+    @FestivalParticipantMustExists
     var userId : String?=null,
     @StandMustExists
     var standId : String?=null,

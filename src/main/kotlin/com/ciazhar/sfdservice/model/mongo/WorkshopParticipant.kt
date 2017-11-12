@@ -13,7 +13,7 @@ import javax.validation.constraints.NotEmpty
  * [ Documentation Here ]
  */
 @Document
-data class WorkshopUser(
+data class WorkshopParticipant(
     @Id
     var id : String?=null,
 

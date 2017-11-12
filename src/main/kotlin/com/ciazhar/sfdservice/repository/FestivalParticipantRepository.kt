@@ -1,6 +1,6 @@
 package com.ciazhar.sfdservice.repository
 
-import com.ciazhar.sfdservice.model.mongo.FestivalUser
+import com.ciazhar.sfdservice.model.mongo.FestivalParticipant
 import org.springframework.data.mongodb.repository.ReactiveMongoRepository
 
 /**
@@ -9,4 +9,4 @@ import org.springframework.data.mongodb.repository.ReactiveMongoRepository
  * [ Documentation Here ]
  */
 
-interface FestivalUserRepository : ReactiveMongoRepository<FestivalUser, String>
+interface FestivalParticipantRepository : ReactiveMongoRepository<FestivalParticipant, String>
