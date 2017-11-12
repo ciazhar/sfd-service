@@ -1,6 +1,7 @@
 package com.ciazhar.sfdservice.controller
 
 import com.ciazhar.sfdservice.model.mongo.Stand
+import com.ciazhar.sfdservice.model.request.DeleteStandForm
 import com.ciazhar.sfdservice.service.StandService
 import org.springframework.web.bind.annotation.*
 import reactor.core.publisher.Flux
@@ -25,5 +26,10 @@ class StandController(private val service : StandService){
     @GetMapping("/all")
     fun findAll() : Flux<Stand>{
         return service.findAll()
+    }
+
+    @PostMapping("/delete")
+    fun delete(@Valid @RequestBody form : DeleteStandForm) : Mono<Void>{
+        return service.delete(form)
     }
 }
