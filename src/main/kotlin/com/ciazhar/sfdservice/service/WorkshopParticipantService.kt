@@ -1,6 +1,7 @@
 package com.ciazhar.sfdservice.service
 
 import com.ciazhar.sfdservice.model.mongo.WorkshopParticipant
+import com.ciazhar.sfdservice.model.request.DeleteWorkshopParticipantForm
 import reactor.core.publisher.Flux
 import reactor.core.publisher.Mono
 
@@ -13,4 +14,5 @@ import reactor.core.publisher.Mono
 interface WorkshopParticipantService {
     fun registerWorkshop(user : WorkshopParticipant) : Mono<WorkshopParticipant>
     fun findAll() : Flux<WorkshopParticipant>
+    fun delete(form : DeleteWorkshopParticipantForm):Mono<Void>
 }
