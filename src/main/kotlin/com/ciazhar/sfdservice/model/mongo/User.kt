@@ -2,6 +2,7 @@ package com.ciazhar.sfdservice.model.mongo
 
 import com.ciazhar.sfdservice.model.Score
 import org.springframework.data.annotation.Id
+import org.springframework.data.mongodb.core.index.Indexed
 import org.springframework.data.mongodb.core.mapping.Document
 import java.util.*
 import javax.validation.constraints.Email
@@ -26,6 +27,7 @@ data class User(
     var lastName : String?=null,
 
     @field:NotEmpty
+    @field:Indexed(unique = true)
     var username : String?=null,
 
     @field:NotEmpty
