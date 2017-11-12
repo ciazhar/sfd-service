@@ -1,6 +1,7 @@
 package com.ciazhar.sfdservice.service
 
 import com.ciazhar.sfdservice.model.mongo.WorkshopUser
+import reactor.core.publisher.Flux
 import reactor.core.publisher.Mono
 
 /**
@@ -11,4 +12,5 @@ import reactor.core.publisher.Mono
 
 interface WorkshopUserService{
     fun registerWorkshop(user : WorkshopUser) : Mono<WorkshopUser>
+    fun findAll() : Flux<WorkshopUser>
 }

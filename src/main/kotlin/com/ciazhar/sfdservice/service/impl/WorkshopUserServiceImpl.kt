@@ -8,6 +8,7 @@ import com.ciazhar.sfdservice.repository.WorkshopUserRepository
 import com.ciazhar.sfdservice.service.FestivalUserService
 import com.ciazhar.sfdservice.service.WorkshopUserService
 import org.springframework.stereotype.Service
+import reactor.core.publisher.Flux
 import reactor.core.publisher.Mono
 
 @Service
@@ -26,5 +27,9 @@ class WorkshopUserServiceImpl (private val workshopUserRepository: WorkshopUserR
         )
         userFestival.scoreList?.add(score)
         return festivalUserRepository.save(userFestival).flatMap { workshopUserRepository.save(user) }
+    }
+
+    override fun findAll(): Flux<WorkshopUser> {
+        return workshopUserRepository.findAll()
     }
 }
