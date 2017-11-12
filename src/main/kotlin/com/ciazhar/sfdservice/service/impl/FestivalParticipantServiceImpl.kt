@@ -3,6 +3,7 @@ package com.ciazhar.sfdservice.service.impl
 import com.ciazhar.sfdservice.exception.UserHasVisitException
 import com.ciazhar.sfdservice.model.Score
 import com.ciazhar.sfdservice.model.mongo.FestivalParticipant
+import com.ciazhar.sfdservice.model.request.DecreasePointForm
 import com.ciazhar.sfdservice.model.request.DeleteFestivalParticipantForm
 import com.ciazhar.sfdservice.model.request.SubmitScoreForm
 import com.ciazhar.sfdservice.service.FestivalParticipantService
@@ -21,6 +22,21 @@ class FestivalParticipantServiceImpl(private val userRepository: FestivalPartici
 
     override fun registerFestival(festivalUser: FestivalParticipant) : Mono<FestivalParticipant>{
         return userRepository.save(festivalUser)
+    }
+
+    override fun decreasePoint(form: DecreasePointForm): Mono<FestivalParticipant> {
+        return userRepository.findById(form.participantId)
+                .flatMap {
+                    participant -> decreasePointExtend(participant,form)
+                }
+                .flatMap{
+                    participant -> userRepository.save(participant)
+                }
+    }
+
+    fun decreasePointExtend(participant : FestivalParticipant, form : DecreasePointForm) : Mono<FestivalParticipant>{
+        participant.score = participant.score!! - form.point!!
+        return Mono.just(participant)
     }
 
     override fun findAll(): Flux<FestivalParticipant> {

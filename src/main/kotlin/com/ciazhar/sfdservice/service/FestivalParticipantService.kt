@@ -1,6 +1,7 @@
 package com.ciazhar.sfdservice.service
 
 import com.ciazhar.sfdservice.model.mongo.FestivalParticipant
+import com.ciazhar.sfdservice.model.request.DecreasePointForm
 import com.ciazhar.sfdservice.model.request.DeleteFestivalParticipantForm
 import com.ciazhar.sfdservice.model.request.SubmitScoreForm
 import reactor.core.publisher.Flux
@@ -16,4 +17,5 @@ interface FestivalParticipantService {
     fun submitScore(form : SubmitScoreForm) : Mono<FestivalParticipant>
     fun findAll() : Flux<FestivalParticipant>
     fun delete(form : DeleteFestivalParticipantForm) : Mono<Void>
+    fun decreasePoint(form : DecreasePointForm) : Mono<FestivalParticipant>
 }
