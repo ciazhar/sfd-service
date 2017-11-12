@@ -1,6 +1,7 @@
 package com.ciazhar.sfdservice.service
 
 import com.ciazhar.sfdservice.model.mongo.Stand
+import reactor.core.publisher.Flux
 import reactor.core.publisher.Mono
 
 /**
@@ -10,4 +11,5 @@ import reactor.core.publisher.Mono
  */
 interface StandService {
     fun createStand(stand : Stand) : Mono<Stand>
+    fun findAll() : Flux<Stand>
 }
