@@ -16,8 +16,8 @@ class UserServiceImpl (private val userRepository: UserRepository): UserService 
         return userRepository.save(user)
     }
 
-    override fun registerFestival() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    override fun registerFestival(user : User) : Mono<User>{
+        return userRepository.save(user)
     }
 
     override fun editPoint() {

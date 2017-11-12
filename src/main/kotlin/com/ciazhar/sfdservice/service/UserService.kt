@@ -10,6 +10,6 @@ import reactor.core.publisher.Mono
  */
 interface UserService{
     fun registerWorkshop(user : User) : Mono<User>
-    fun registerFestival()
+    fun registerFestival(user : User) : Mono<User>
     fun editPoint()
 }
