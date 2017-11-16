@@ -15,8 +15,8 @@ app.controller('workshopController',function ($scope, $http, $window) {
     };
     $scope.listParticipant();
 
-    $scope.saveWorkshopParticipant = function(){
-        $http.post('/workshop/save',$scope.participant).then(sukses,gagal);
+    $scope.registerWorkshopParticipant = function(){
+        $http.post('/workshop/register',$scope.participant).then(sukses,gagal);
         function sukses(response){
             $window.location.href = '/workshop-participant.html';
             console.log($scope.participant.toString())
@@ -39,13 +39,7 @@ app.controller('workshopController',function ($scope, $http, $window) {
     }
 
     $scope.selectParticipant = function(participant){
-        $scope.participant = {};
-        $scope.participant.id = participant.id
-        $scope.participant.firstName = participant.firstName
-        $scope.participant.lastName = participant.lastName
-        $scope.participant.username = participant.username
-        $scope.participant.email = participant.email
-        $scope.participant.phoneNumber = participant.phoneNumber
+        $scope.participant = participant
         console.log(participant)
     }
 })
