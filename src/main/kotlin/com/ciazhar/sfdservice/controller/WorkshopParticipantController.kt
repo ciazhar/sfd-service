@@ -1,6 +1,7 @@
 package com.ciazhar.sfdservice.controller
 
 import com.ciazhar.sfdservice.model.mongo.WorkshopParticipant
+import com.ciazhar.sfdservice.model.request.UpdateParticipantForm
 import com.ciazhar.sfdservice.service.WorkshopParticipantService
 import org.springframework.web.bind.annotation.*
 import reactor.core.publisher.Flux
@@ -25,6 +26,11 @@ class WorkshopParticipantController(private val service: WorkshopParticipantServ
     @GetMapping("/all")
     fun findAll() : Flux<WorkshopParticipant>{
         return service.findAll()
+    }
+
+    @PostMapping("/update")
+    fun update(@Valid @RequestBody user: UpdateParticipantForm) : Mono<WorkshopParticipant>{
+        return service.update(user)
     }
 
     @PostMapping("/delete/{id}")
