@@ -14,5 +14,5 @@ import reactor.core.publisher.Mono
 interface WorkshopParticipantService {
     fun registerWorkshop(user : WorkshopParticipant) : Mono<WorkshopParticipant>
     fun findAll() : Flux<WorkshopParticipant>
-    fun delete(form : DeleteWorkshopParticipantForm):Mono<Void>
+    fun delete(id : String):Mono<Void>
 }

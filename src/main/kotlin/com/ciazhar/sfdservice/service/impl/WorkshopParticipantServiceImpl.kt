@@ -17,8 +17,8 @@ class WorkshopParticipantServiceImpl(private val workshopParticipantRepository: 
                                      private val festivalUserRepository: FestivalParticipantRepository)
     : WorkshopParticipantService {
 
-    override fun delete(form: DeleteWorkshopParticipantForm): Mono<Void> {
-        return workshopParticipantRepository.findById(form.participantId)
+    override fun delete(id : String): Mono<Void> {
+        return workshopParticipantRepository.findById(id)
                 .flatMap { workshopParticipantRepository.delete(it) }
     }
 
