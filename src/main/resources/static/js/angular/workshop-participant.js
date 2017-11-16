@@ -42,4 +42,16 @@ app.controller('workshopController',function ($scope, $http, $window) {
         $scope.participant = participant
         console.log(participant)
     }
+
+    $scope.deleteParticipant = function () {
+        $http.post('/workshop/delete/'+$scope.participant.id).then(sukses,gagal);
+        function sukses(response){
+            $window.location.href = '/workshop-participant.html';
+            console.log($scope.participant)
+        }
+        function gagal(response){
+            console.log('Data: '+$scope.participant)
+            console.log('Error : '+response)
+        }
+    }
 })
