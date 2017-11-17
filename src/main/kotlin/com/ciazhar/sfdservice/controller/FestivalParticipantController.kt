@@ -4,6 +4,7 @@ import com.ciazhar.sfdservice.model.mongo.FestivalParticipant
 import com.ciazhar.sfdservice.model.request.DecreasePointForm
 import com.ciazhar.sfdservice.model.request.DeleteFestivalParticipantForm
 import com.ciazhar.sfdservice.model.request.SubmitScoreForm
+import com.ciazhar.sfdservice.model.request.UpdateParticipantForm
 import com.ciazhar.sfdservice.service.FestivalParticipantService
 import org.springframework.web.bind.annotation.*
 import reactor.core.publisher.Flux
@@ -34,9 +35,15 @@ class FestivalParticipantController(private val service: FestivalParticipantServ
         return service.findAll()
     }
 
-    @PostMapping("/delete")
-    fun delete(@Valid @RequestBody form : DeleteFestivalParticipantForm) : Mono<Void>{
-        return service.delete(form)
+    @PostMapping("/update")
+    fun update(@Valid @RequestBody user: UpdateParticipantForm) : Mono<FestivalParticipant>{
+        return service.update(user)
+    }
+
+
+    @PostMapping("/delete/{id}")
+    fun delete(@Valid @PathVariable id : String) : Mono<Void>{
+        return service.delete(id)
     }
 
     @PostMapping("/decrease")

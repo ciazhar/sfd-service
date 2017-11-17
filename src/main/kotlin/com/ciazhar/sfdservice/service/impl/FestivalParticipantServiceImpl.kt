@@ -3,9 +3,11 @@ package com.ciazhar.sfdservice.service.impl
 import com.ciazhar.sfdservice.exception.UserHasVisitException
 import com.ciazhar.sfdservice.model.Score
 import com.ciazhar.sfdservice.model.mongo.FestivalParticipant
+import com.ciazhar.sfdservice.model.mongo.WorkshopParticipant
 import com.ciazhar.sfdservice.model.request.DecreasePointForm
 import com.ciazhar.sfdservice.model.request.DeleteFestivalParticipantForm
 import com.ciazhar.sfdservice.model.request.SubmitScoreForm
+import com.ciazhar.sfdservice.model.request.UpdateParticipantForm
 import com.ciazhar.sfdservice.service.FestivalParticipantService
 import com.ciazhar.sfdservice.repository.FestivalParticipantRepository
 import org.springframework.stereotype.Service
@@ -16,8 +18,24 @@ import reactor.core.publisher.Mono
 @Service
 class FestivalParticipantServiceImpl(private val userRepository: FestivalParticipantRepository) : FestivalParticipantService {
 
-    override fun delete(form : DeleteFestivalParticipantForm) : Mono<Void> {
-        return userRepository.findById(form.participantId).flatMap { user -> userRepository.delete(user) }
+    override fun delete(id : String) : Mono<Void> {
+        return userRepository.findById(id).flatMap { user -> userRepository.delete(user) }
+    }
+
+    override fun update(user: UpdateParticipantForm): Mono<FestivalParticipant> {
+        return userRepository.findById(user.id)
+                .flatMap { findedUser ->
+                    change(user,findedUser)
+                }.flatMap { userRepository.save(it) }
+    }
+
+    fun change(user : UpdateParticipantForm,newUser : FestivalParticipant) : Mono<FestivalParticipant>{
+        newUser.email = user.email
+        newUser.firstName = user.firstName
+        newUser.lastName = user.lastName
+        newUser.phoneNumber = user.phoneNumber
+
+        return Mono.just(newUser)
     }
 
     override fun registerFestival(festivalUser: FestivalParticipant) : Mono<FestivalParticipant>{
